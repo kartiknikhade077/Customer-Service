@@ -14,7 +14,7 @@ public class Customers {
 	private Long employeeId;
 	private String customerName;
 	private String companyName;
-	private String gstinNumer;
+	private String gstinNumber;
 	private String msmeNumber;
 	private String panNumber;
 	private String phoneNumber;
@@ -41,7 +41,7 @@ public class Customers {
 	
 	
 	public Customers(String id, Long companyId, Long employeeId, String customerName, String companyName,
-			String gstinNumer, String msmeNumber, String panNumber, String phoneNumber, String website, String address,
+			String gstinNumber, String msmeNumber, String panNumber, String phoneNumber, String website, String address,
 			String country, String state, String city, String zipCode, String billingAddress, String billingCity,
 			String billingState, String billingCountry, String billingZipCode, String shippingAddress,
 			String shippingCountry, String shippingState, String shippingCity, String shippingZipCode,boolean status,LocalDateTime creaDateTime,String email) {
@@ -51,7 +51,7 @@ public class Customers {
 		this.employeeId = employeeId;
 		this.customerName = customerName;
 		this.companyName = companyName;
-		this.gstinNumer = gstinNumer;
+		this.gstinNumber = gstinNumber;
 		this.msmeNumber = msmeNumber;
 		this.panNumber = panNumber;
 		this.phoneNumber = phoneNumber;
@@ -113,11 +113,11 @@ public class Customers {
 	public void setCompanyName(String companyName) {
 		this.companyName = companyName;
 	}
-	public String getGstinNumer() {
-		return gstinNumer;
+	public String getGstinNumber() {
+		return gstinNumber;
 	}
-	public void setGstinNumer(String gstinNumer) {
-		this.gstinNumer = gstinNumer;
+	public void setGstinNumer(String gstinNumber) {
+		this.gstinNumber = gstinNumber;
 	}
 	public String getMsmeNumber() {
 		return msmeNumber;
