@@ -81,7 +81,7 @@ public class CustomerController {
 			Pageable pageable = PageRequest.of(page, size, Sort.by(Sort.Direction.DESC, "id"));
 			String regex = ".*" + Pattern.quote(name) + ".*";
 			Page<Customers> customerList = customerRepository
-					.findByCompanyIdAndCustomerNameRegexIgnoreCase(company.getCompanyId(), regex, pageable);
+					.findByCompanyIdAndCompanyNameRegexIgnoreCase(company.getCompanyId(), regex, pageable);
 
 			Map<String, Object> response = new HashMap<>();
 			response.put("customerList", customerList.getContent());

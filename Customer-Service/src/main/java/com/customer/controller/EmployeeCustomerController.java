@@ -95,7 +95,7 @@ public class EmployeeCustomerController {
 			Pageable pageable = PageRequest.of(page, size, Sort.by(Sort.Direction.DESC, "id"));
 			String regex = ".*" + Pattern.quote(name) + ".*";  // Escape special characters
 			Page<Customers> customerList = customerRepository
-			    .findByEmployeeIdAndCustomerNameRegexIgnoreCase(
+			    .findByEmployeeIdAndCompanyNameRegexIgnoreCase(
 			        employee.getEmployeeId(),
 			        regex,
 			        pageable

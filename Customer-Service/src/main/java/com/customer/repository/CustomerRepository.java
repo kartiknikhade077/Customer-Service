@@ -9,7 +9,7 @@ import com.customer.entity.Customers;
 
 public interface CustomerRepository extends MongoRepository<Customers, String>{
 	
-	Page<Customers> findByCompanyIdAndCustomerNameRegexIgnoreCase(long companyId,String name,Pageable pageable);
-	Page<Customers> findByEmployeeIdAndCustomerNameRegexIgnoreCase(long companyId,String name ,Pageable pageable);
+	Page<Customers> findByCompanyIdAndCompanyNameRegexIgnoreCase(long companyId,String name,Pageable pageable);
+	Page<Customers> findByEmployeeIdAndCompanyNameRegexIgnoreCase(long companyId,String name ,Pageable pageable);
 
 }
