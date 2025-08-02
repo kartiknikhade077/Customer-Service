@@ -10,8 +10,8 @@ public class Customers {
 	
 	@Id
 	private String id;
-	private Long companyId;
-	private Long employeeId;
+	private String companyId;
+	private String employeeId;
 	private String customerName;
 	private String companyName;
 	private String gstinNumber;
@@ -40,7 +40,7 @@ public class Customers {
 	
 	
 	
-	public Customers(String id, Long companyId, Long employeeId, String customerName, String companyName,
+	public Customers(String id, String companyId, String employeeId, String customerName, String companyName,
 			String gstinNumber, String msmeNumber, String panNumber, String phoneNumber, String website, String address,
 			String country, String state, String city, String zipCode, String billingAddress, String billingCity,
 			String billingState, String billingCountry, String billingZipCode, String shippingAddress,
@@ -89,16 +89,16 @@ public class Customers {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public Long getCompanyId() {
+	public String getCompanyId() {
 		return companyId;
 	}
-	public void setCompanyId(Long companyId) {
+	public void setCompanyId(String companyId) {
 		this.companyId = companyId;
 	}
-	public Long getEmployeeId() {
+	public String getEmployeeId() {
 		return employeeId;
 	}
-	public void setEmployeeId(Long employeeId) {
+	public void setEmployeeId(String employeeId) {
 		this.employeeId = employeeId;
 	}
 	public String getCustomerName() {

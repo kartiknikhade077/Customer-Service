@@ -69,8 +69,8 @@ public class EmployeeCustomerController {
 
 		try {
 
-			customer.setCompanyId(Long.valueOf(employee.getCompanyId()));
-			customer.setEmployeeId(Long.valueOf(employee.getEmployeeId()));
+			customer.setCompanyId(employee.getCompanyId());
+			customer.setEmployeeId(employee.getEmployeeId());
 			customer.setStatus(true);
 			customer.setCreatedDate(LocalDateTime.now());
 			customerRepository.save(customer);
@@ -139,8 +139,8 @@ public class EmployeeCustomerController {
 	public ResponseEntity<?> updateCustomer(@RequestBody Customers customer) {
 
 		try {
-			customer.setCompanyId(Long.valueOf(employee.getCompanyId()));
-			customer.setEmployeeId(Long.valueOf(employee.getEmployeeId()));
+			customer.setCompanyId(employee.getCompanyId());
+			customer.setEmployeeId(employee.getEmployeeId());
 			return ResponseEntity.ok(customer);
 
 		} catch (Exception e) {

@@ -6,12 +6,12 @@ public class Company {
 	
 
 
-	private Long companyId;
+	private String companyId;
 	private int userId;
 	private String companyName;
 	private String companyEmail;
 	private String companyDescription;
-	public Company(long companyId, int userId, String companyName, String companyEmail, String companyDescription) {
+	public Company(String companyId, int userId, String companyName, String companyEmail, String companyDescription) {
 		super();
 		this.companyId = companyId;
 		this.userId = userId;
@@ -24,12 +24,6 @@ public class Company {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public long getCompanyId() {
-		return companyId;
-	}
-	public void setCompanyId(long companyId) {
-		this.companyId = companyId;
-	}
 	public int getUserId() {
 		return userId;
 	}
@@ -55,14 +49,11 @@ public class Company {
 	public void setCompanyName(String companyName) {
 		this.companyName = companyName;
 	}
-	@Override
-	public String toString() {
-		return "Company [companyId=" + companyId + ", userId=" + userId + ", companyName=" + companyName
-				+ ", companyEmail=" + companyEmail + ", companyDescription=" + companyDescription + ", getCompanyId()="
-				+ getCompanyId() + ", getUserId()=" + getUserId() + ", getCompanyEmail()=" + getCompanyEmail()
-				+ ", getCompanyDescription()=" + getCompanyDescription() + ", getCompanyName()=" + getCompanyName()
-				+ ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString()
-				+ "]";
+	public String getCompanyId() {
+		return companyId;
+	}
+	public void setCompanyId(String companyId) {
+		this.companyId = companyId;
 	}
 	
 	

@@ -1,5 +1,6 @@
 package com.customer.controller;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -57,8 +58,9 @@ public class CustomerController {
 
 		try {
 
-			customer.setCompanyId(Long.valueOf(company.getCompanyId()));
+			customer.setCompanyId(company.getCompanyId());
 			customer.setStatus(true);
+			customer.setCreatedDate(LocalDateTime.now());
 			customerRepository.save(customer);
 
 			return ResponseEntity.ok(customer);

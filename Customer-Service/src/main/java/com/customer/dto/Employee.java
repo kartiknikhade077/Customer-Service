@@ -4,9 +4,9 @@ package com.customer.dto;
 
 public class Employee {
 	
-	private int employeeId;
+	private String employeeId;
 	private int userId;
-	private int companyId;
+	private String companyId;
 	private String Name;
 	private String email;
 	private String password;
@@ -14,8 +14,8 @@ public class Employee {
 	private String description;
 	private String department;
 	private String gender;
-	private long departmentId;
-	private long roleId;
+	private String departmentId;
+	private String roleId;
 	private String roleName;
 	
 	//access module
@@ -23,8 +23,8 @@ public class Employee {
 	private boolean leadAccess;
 	private boolean templateAccess;
 	private boolean emailAccess;
-	public Employee(int employeeId, int userId, int companyId, String name, String email, String password, String phone,
-			String description, String department, String gender, long departmentId, long roleId, String roleName,
+	public Employee(String employeeId, int userId, String companyId, String name, String email, String password, String phone,
+			String description, String department, String gender, String departmentId, String roleId, String roleName,
 			boolean leadAccess, boolean templateAccess, boolean emailAccess) {
 		super();
 		this.employeeId = employeeId;
@@ -48,24 +48,14 @@ public class Employee {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public int getEmployeeId() {
-		return employeeId;
-	}
-	public void setEmployeeId(int employeeId) {
-		this.employeeId = employeeId;
-	}
+
 	public int getUserId() {
 		return userId;
 	}
 	public void setUserId(int userId) {
 		this.userId = userId;
 	}
-	public int getCompanyId() {
-		return companyId;
-	}
-	public void setCompanyId(int companyId) {
-		this.companyId = companyId;
-	}
+	
 	public String getName() {
 		return Name;
 	}
@@ -108,18 +98,7 @@ public class Employee {
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
-	public long getDepartmentId() {
-		return departmentId;
-	}
-	public void setDepartmentId(long departmentId) {
-		this.departmentId = departmentId;
-	}
-	public long getRoleId() {
-		return roleId;
-	}
-	public void setRoleId(long roleId) {
-		this.roleId = roleId;
-	}
+
 	public String getRoleName() {
 		return roleName;
 	}
@@ -144,7 +123,32 @@ public class Employee {
 	public void setEmailAccess(boolean emailAccess) {
 		this.emailAccess = emailAccess;
 	}
-
+	public String getEmployeeId() {
+		return employeeId;
+	}
+	public void setEmployeeId(String employeeId) {
+		this.employeeId = employeeId;
+	}
+	public String getCompanyId() {
+		return companyId;
+	}
+	public void setCompanyId(String companyId) {
+		this.companyId = companyId;
+	}
+	public String getDepartmentId() {
+		return departmentId;
+	}
+	public void setDepartmentId(String departmentId) {
+		this.departmentId = departmentId;
+	}
+	public String getRoleId() {
+		return roleId;
+	}
+	public void setRoleId(String roleId) {
+		this.roleId = roleId;
+	}
+    
+	
 	
 	
 	
