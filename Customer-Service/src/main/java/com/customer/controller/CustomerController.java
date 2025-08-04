@@ -2,10 +2,12 @@ package com.customer.controller;
 
 import java.time.LocalDateTime;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.regex.Pattern;
 
+import org.bson.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -38,11 +40,7 @@ public class CustomerController {
 	@Autowired
 	private CustomerRepository customerRepository;
 
-	@GetMapping
-	public void testing() {
-
-		System.err.println("Setting ");
-	}
+	
 
 	Company company;
 
@@ -134,5 +132,23 @@ public class CustomerController {
 		}
 
 	}
+	
+	
+	@GetMapping("/getCustomerList")
+	public ResponseEntity<?> getCustomerList() {
+
+		try {                       
+			List<Customers> list = customerRepository.findByCompanyId(company.getCompanyId());
+			return ResponseEntity.ok(list);
+
+		} catch (Exception e) {
+
+			e.printStackTrace();
+
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error  " + e.getMessage());
+		}
+
+	}
+	
 
 }
