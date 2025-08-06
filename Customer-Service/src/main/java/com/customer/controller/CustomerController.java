@@ -7,7 +7,6 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.regex.Pattern;
 
-import org.bson.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -15,6 +14,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,7 +27,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.customer.client.UserSerivceClinet;
 import com.customer.dto.Company;
+import com.customer.entity.Contacts;
 import com.customer.entity.Customers;
+import com.customer.repository.ContactsRepository;
 import com.customer.repository.CustomerRepository;
 
 @RestController
@@ -40,7 +42,8 @@ public class CustomerController {
 	@Autowired
 	private CustomerRepository customerRepository;
 
-	
+	@Autowired
+	private ContactsRepository contactsRepository;
 
 	Company company;
 
@@ -149,6 +152,75 @@ public class CustomerController {
 		}
 
 	}
+	
+	@PostMapping("/createContact")
+	public ResponseEntity<?> createContact(@RequestBody Contacts contacts) {
+
+		try {
+		
+			return ResponseEntity.ok(contactsRepository.save(contacts));
+
+		} catch (Exception e) {
+
+			e.printStackTrace();
+
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error  " + e.getMessage());
+		}
+
+	}
+	
+	@PutMapping("/updateContact")
+	public ResponseEntity<?> updateContact(@RequestBody Contacts contacts) {
+
+		try {
+		
+			return ResponseEntity.ok(contactsRepository.save(contacts));
+
+		} catch (Exception e) {
+
+			e.printStackTrace();
+
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error  " + e.getMessage());
+		}
+
+	}
+	
+	
+	@GetMapping("/getContacts/{customerId}")
+	public ResponseEntity<?> getContacts(@PathVariable String customerId) {
+
+		try {
+		      List<Contacts> contactsList=contactsRepository.findByCustomerId(customerId);
+			return ResponseEntity.ok(contactsList);
+
+		} catch (Exception e) {
+
+			e.printStackTrace();
+
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error  " + e.getMessage());
+		}
+
+	}
+	
+	
+	@DeleteMapping("/deleteContacts/{contactId}")
+	public ResponseEntity<?> deleteContacts(@PathVariable String contactId) {
+
+		try {
+		    
+			contactsRepository.deleteById(contactId);
+			
+			return ResponseEntity.ok("Contact Deleted");
+
+		} catch (Exception e) {
+
+			e.printStackTrace();
+
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error  " + e.getMessage());
+		}
+
+	}
+	
 	
 
 }
