@@ -27,6 +27,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.customer.client.UserSerivceClinet;
 import com.customer.dto.Company;
+import com.customer.dto.Employee;
+import com.customer.dto.User;
 import com.customer.entity.Contacts;
 import com.customer.entity.Customers;
 import com.customer.repository.ContactsRepository;
@@ -46,11 +48,22 @@ public class CustomerController {
 	private ContactsRepository contactsRepository;
 
 	Company company;
+	User user;
+	Employee employee;
+    
 
+	
 	@ModelAttribute
-	public void companyDetails() {
+	public void getUserInfo() {
 
-		company = userSerivceClinet.getCompanyInfo();
+		user = userSerivceClinet.getUserInfo();
+		
+		if(user.getRole().equalsIgnoreCase("ROLE_COMPANY")) {
+			
+			company = userSerivceClinet.getCompanyInfo();
+		}else {
+			employee=userSerivceClinet.getEmployeeInfo();
+		}
 
 	}
 
@@ -58,8 +71,12 @@ public class CustomerController {
 	public ResponseEntity<?> createCustomer(@RequestBody Customers customer) {
 
 		try {
-
+			if(user.getRole().equalsIgnoreCase("ROLE_COMPANY")) {
 			customer.setCompanyId(company.getCompanyId());
+			}else {
+				customer.setEmployeeId(employee.getEmployeeId());
+				customer.setCompanyId(employee.getCompanyId());
+			}
 			customer.setStatus(true);
 			customer.setCreatedDate(LocalDateTime.now());
 			customerRepository.save(customer);
