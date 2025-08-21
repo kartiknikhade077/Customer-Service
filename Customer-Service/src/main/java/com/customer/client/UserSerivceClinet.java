@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import com.customer.dto.Company;
 import com.customer.dto.Employee;
+import com.customer.dto.ModuleAccess;
 import com.customer.dto.User;
 
 
@@ -20,5 +21,8 @@ public interface UserSerivceClinet {
 	
 	@GetMapping("/company/getUserInfo")
 	public User getUserInfo();
+	
+	@GetMapping("/company/getModuleAccessInfo")
+	public ModuleAccess getModuleAccessInfo();
 
 }

@@ -1,4 +1,4 @@
-package com.customer.controller;
+	package com.customer.controller;
 
 import java.time.LocalDateTime;
 import java.util.HashMap;
@@ -28,6 +28,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.customer.client.UserSerivceClinet;
 import com.customer.dto.Company;
 import com.customer.dto.Employee;
+import com.customer.dto.ModuleAccess;
 import com.customer.dto.User;
 import com.customer.entity.Contacts;
 import com.customer.entity.Customers;
@@ -50,14 +51,14 @@ public class CustomerController {
 	Company company;
 	User user;
 	Employee employee;
-    
+    ModuleAccess moduleAccess;
 
 	
 	@ModelAttribute
 	public void getUserInfo() {
 
 		user = userSerivceClinet.getUserInfo();
-		
+		moduleAccess =userSerivceClinet.getModuleAccessInfo();
 		if(user.getRole().equalsIgnoreCase("ROLE_COMPANY")) {
 			
 			company = userSerivceClinet.getCompanyInfo();
@@ -100,8 +101,18 @@ public class CustomerController {
 
 			Pageable pageable = PageRequest.of(page, size, Sort.by(Sort.Direction.DESC, "id"));
 			String regex = ".*" + Pattern.quote(name) + ".*";
-			Page<Customers> customerList = customerRepository
-					.findByCompanyIdAndCompanyNameRegexIgnoreCase(company.getCompanyId(), regex, pageable);
+			Page<Customers> customerList =null;
+			if(user.getRole().equalsIgnoreCase("ROLE_COMPANY")) {
+				customerList= customerRepository
+						.findByCompanyIdAndCompanyNameRegexIgnoreCase(company.getCompanyId(), regex, pageable);
+			}else if(moduleAccess.isCustomerViewAll()){
+				customerList= customerRepository
+						.findByCompanyIdAndCompanyNameRegexIgnoreCase(employee.getCompanyId(), regex, pageable);
+			}else  {
+				customerList= customerRepository
+						.findByEmployeeIdAndCompanyNameRegexIgnoreCase(employee.getEmployeeId(), regex, pageable);
+			}
+			
 
 			Map<String, Object> response = new HashMap<>();
 			response.put("customerList", customerList.getContent());
@@ -140,7 +151,12 @@ public class CustomerController {
 	public ResponseEntity<?> updateCustomer(@RequestBody Customers customer) {
 
 		try {
-			customer.setCompanyId(company.getCompanyId());
+			if (user.getRole().equalsIgnoreCase("ROLE_COMPANY")) {
+				customer.setCompanyId(company.getCompanyId());
+			} else {
+				customer.setEmployeeId(employee.getEmployeeId());
+				customer.setCompanyId(employee.getCompanyId());
+			}
 			customerRepository.save(customer);
 			return ResponseEntity.ok(customer);
 
